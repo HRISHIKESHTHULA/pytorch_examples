@@ -5,7 +5,7 @@ import torch
 
 is_cuda_available = torch.cuda.is_available()
 
-t = torch.Tensor([1, 2, 3, 4, 5])
+t = torch.Tensor([3, 2, 1, 4, 5])
 
 if is_cuda_available:
     os.environ["ROCBLAS_LAYER"] = "1"

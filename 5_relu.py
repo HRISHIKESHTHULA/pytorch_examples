@@ -9,6 +9,7 @@ is_cuda_available = torch.cuda.is_available()
 m = nn.ReLU()
 ip = torch.randn(2)
 if is_cuda_available:
+    m = m.to("cuda")
     os.environ["ROCBLAS_LAYER"] = "1"
     ip = ip.to("cuda")
 

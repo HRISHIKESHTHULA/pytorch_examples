@@ -6,6 +6,8 @@ import torch.nn as nn
 import torch.optim as optim
 
 
+is_cuda_available = torch.cuda.is_available()
+
 dataset = np.loadtxt(os.path.join("data", "nn1_data.csv"), delimiter=',')
 X = dataset[:,0:8]
 y = dataset[:,8]
@@ -33,6 +35,11 @@ class BinClassifier(nn.Module):
 
 
 model = BinClassifier()
+if is_cuda_available:
+    os.environ["ROCBLAS_LAYER"] = "1"
+    X = X.to("cuda")
+    y = y.to("cuda")
+    model = model.to("cuda")
 print(model)
 
 # train the model

@@ -17,6 +17,7 @@ b = torch.tensor([
 ])
 
 if is_cuda_available:
+    os.environ["ROCBLAS_LAYER"] = "1"
     a = a.to('cuda:0')
     b = b.to('cuda:0')
 
